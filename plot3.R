@@ -1,7 +1,7 @@
 ## Coursera EXploratory Data Analysis
 ## Week 1 Assignment
 ## Import household power consumption data and create 4 plots
-## Plot 2
+## Plot 3
 
 #Data is in the working directory
 #Load libraries
@@ -22,13 +22,20 @@ df <- read.csv.sql("household_power_consumption.txt",
 df$Date_time<-dmy_hms(paste(df$Date, df$Time))
 
 #Open device
-png("plot2.png", height=480, width=480, bg= 'transparent')
+png("plot3.png", height=480, width=480, bg= 'transparent')
 
 #Graph
-plot(df$Date_time, df$Global_active_power,
-     "l",
+plot(df$Date_time, df$Sub_metering_1,
+     "l", 
+     col = "black",
      xlab = "",
-     ylab = "Global Active Power (kilowatts)")
+     ylab = "Energy sub metering")
+
+lines(df$Date_time, df$Sub_metering_2, col = "red")
+
+lines(df$Date_time, df$Sub_metering_3, col = "blue")
+
+legend("topright", c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), col = c("black", "red", "blue"), lwd = 1)
 
 
 dev.off()   #Close device
